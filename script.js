@@ -3,7 +3,7 @@ var city = document.querySelector("#get-city");
 var startBtn = document.querySelector("#get-weather-data");
 var dayContainer = document.querySelector("#day-container");
 var futureContainer = document.querySelector("future-container");
-var currentDay = dayjs().format('DD M YYYY')
+var currentDay = dayjs().format('M/DD/YYYY')
 // var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIkey
 
 
@@ -36,10 +36,14 @@ function getWeatherApi(city){
         var cityLongitutde = data.coord.lon;
 
         nameOfCity.textContent = data.name + " " + currentDay
-        tempOfCity.textContent = Math.round((data.main.temp - 273.15) * 9 / 5 + 32) + "\xB0" + "F";
+        tempOfCity.textContent = "Temp: " + Math.round((data.main.temp - 273.15) * 9 / 5 + 32) + "\xB0" + "F";
+        windOfCity.textContent = "Wind: " + data.wind.speed + " MPH"
+        humidityOfCity.textContent = "Humidity: " + data.main.humidity + " %"
         dayContainer.append(nameOfCity);
         dayContainer.append(iconValue);
         dayContainer.append(tempOfCity);
+        dayContainer.append(windOfCity);
+        dayContainer.append(humidityOfCity);
 
      })
 }
